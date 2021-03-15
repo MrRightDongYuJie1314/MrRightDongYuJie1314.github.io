@@ -1,0 +1,426 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#FFF">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="icon" type="image/ico" sizes="32x32" href="/images/favicon.ico">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+<link rel="alternate" type="application/rss+xml" title="小翘" href="http://example.com/rss.xml" />
+<link rel="alternate" type="application/atom+xml" title="小翘" href="http://example.com/atom.xml" />
+<link rel="alternate" type="application/json" title="小翘" href="http://example.com/feed.json" />
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CFredericka%20the%20Great:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20JP:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CInconsolata:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="/css/app.css?v=0.2.5">
+
+  
+  <meta name="keywords" content="Sakura" />
+
+
+<link rel="canonical" href="http://example.com/2021/03/09/android/hello-world/">
+
+
+
+  <title>
+Android自定义view第一弹（防小米计步） - android |
+Handsome Man = 小翘 = MrDong</title>
+<meta name="generator" content="Hexo 5.4.0"></head>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div id="loading">
+    <div class="cat">
+      <div class="body"></div>
+      <div class="head">
+        <div class="face"></div>
+      </div>
+      <div class="foot">
+        <div class="tummy-end"></div>
+        <div class="bottom"></div>
+        <div class="legs left"></div>
+        <div class="legs right"></div>
+      </div>
+      <div class="paw">
+        <div class="hands left"></div>
+        <div class="hands right"></div>
+      </div>
+    </div>
+  </div>
+  <div id="container">
+    <header id="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="inner">
+        <div id="brand">
+          <div class="pjax">
+          
+  <h1 itemprop="name headline">Android自定义view第一弹（防小米计步）
+  </h1>
+  
+<div class="meta">
+  <span class="item" title="创建时间：2021-03-09 22:16:01">
+    <span class="icon">
+      <i class="ic i-calendar"></i>
+    </span>
+    <span class="text">发表于</span>
+    <time itemprop="dateCreated datePublished" datetime="2021-03-09T22:16:01+08:00">2021-03-09</time>
+  </span>
+</div>
+
+
+          </div>
+        </div>
+        <nav id="nav">
+  <div class="inner">
+    <div class="toggle">
+      <div class="lines" aria-label="切换导航栏">
+        <span class="line"></span>
+        <span class="line"></span>
+        <span class="line"></span>
+      </div>
+    </div>
+    <ul class="menu">
+      <li class="item title"><a href="/" rel="start">Handsome Man</a></li>
+    </ul>
+    <ul class="right">
+      <li class="item theme">
+        <i class="ic i-sun"></i>
+      </li>
+      <li class="item search">
+        <i class="ic i-search"></i>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+      </div>
+      <div id="imgs" class="pjax">
+        <ul>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipexbei4hj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipesng5oej20zk0m87d4.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipetv6p75j20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipeyhsblkj20zk0m81kx.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1giciub8ja1j20zk0m81ky.jpg"></li>
+          <li class="item" data-background-image="https://tva3.sinaimg.cn/large/6833939bly1gipevarprfj20zk0m8npd.jpg"></li>
+        </ul>
+      </div>
+    </header>
+    <div id="waves">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" />
+          <use xlink:href="#gentle-wave" x="48" y="3" />
+          <use xlink:href="#gentle-wave" x="48" y="5" />
+          <use xlink:href="#gentle-wave" x="48" y="7" />
+        </g>
+      </svg>
+    </div>
+    <main>
+      <div class="inner">
+        <div id="main" class="pjax">
+          
+  <div class="article wrap">
+    
+<div class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+<i class="ic i-home"></i>
+<span><a href="/">首页</a></span><i class="ic i-angle-right"></i>
+<span  class="current" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem"><a href="/categories/android/" itemprop="item" rel="index" title="分类于 android"><span itemprop="name">android</span></a>
+<meta itemprop="position" content="1" /></span>
+</div>
+
+    <article itemscope itemtype="http://schema.org/Article" class="post block" lang="zh-CN">
+  <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/09/android/hello-world/">
+
+  <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="image" content="/images/avatar.jpg">
+    <meta itemprop="name" content="小翘">
+    <meta itemprop="description" content="MrDong, 记录生活，记录成长">
+  </span>
+
+  <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="小翘">
+  </span>
+
+  <div class="body md" itemprop="articleBody">
+    
+
+    <p><strong>个人开发中自定义 View 系列（有需要的可以点击查看收藏）</strong></p>
+<ol>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMyODY1ODg3L2FydGljbGUvZGV0YWlscy83ODc3MTc1OA==">Android 自定义 view 第一弹（防小米计步）</span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMyODY1ODg3L2FydGljbGUvZGV0YWlscy83ODgxMjA2Nw==">Android 自定义 View 第二弹（旋转的体重）</span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMyODY1ODg3L2FydGljbGUvZGV0YWlscy83ODgxMjc0MA==">Android 自定义 View 第三弹（反人类尺子）</span></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMyODY1ODg3L2FydGljbGUvZGV0YWlscy8xMDcxNTMxNTY=">Android 自定义 View 第四弹（Kotlin 流式布局）</span></li>
+</ol>
+<p>废话不多说，先上效果图：</p>
+<p><img data-src="https://img-blog.csdnimg.cn/img_convert/53735de8e8c6780b231b7d6faf655670.png" alt="这里写图片描述"></p>
+<p>右上脚的计步（有动画效果）</p>
+<p>从来不说废话，上代码：</p>
+<p>一。自定义 View 代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line"> * 计步View</span><br><span class="line"> * Created by DYJ on 2017&#x2F;8&#x2F;3.</span><br><span class="line">*&#x2F;</span><br><span class="line">public class RunningView extends View &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 圆弧的宽度</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private float borderWidth &#x3D; 20f;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 画步数的数值的字体大小</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private float numberTextSize &#x3D; 0;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 步数</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private String stepNumber &#x3D; &quot;0&quot;;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 开始绘制圆弧的角度</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private float startAngle &#x3D; -90;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 终点对应的角度和起始点对应的角度的夹角</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private float angleLength &#x3D; 360;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 所要绘制的当前步数的红色圆弧终点到起点的夹角</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private float currentAngleLength &#x3D; 0;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 动画时长</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private int animationLength &#x3D; 1000;</span><br><span class="line"></span><br><span class="line">    public RunningView(Context context) &#123;</span><br><span class="line">        super(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public RunningView(Context context, AttributeSet attrs) &#123;</span><br><span class="line">        super(context, attrs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public RunningView(Context context, AttributeSet attrs, int defStyleAttr) &#123;</span><br><span class="line">        super(context, attrs, defStyleAttr);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    protected void onDraw(Canvas canvas) &#123;</span><br><span class="line">        super.onDraw(canvas);</span><br><span class="line">        &#x2F;**中心点的x坐标*&#x2F;</span><br><span class="line">        float centerX &#x3D; (getWidth()) &#x2F; 2;</span><br><span class="line">        &#x2F;**指定圆弧的外轮廓矩形区域*&#x2F;</span><br><span class="line">        RectF rectF &#x3D; new RectF(0 + borderWidth, borderWidth, 2 * centerX - borderWidth, 2 * centerX - borderWidth);</span><br><span class="line">        &#x2F;**【第一步】绘制整体的黄色圆弧*&#x2F;</span><br><span class="line">        drawArcGray(canvas, rectF);</span><br><span class="line">        &#x2F;**【第二步】绘制当前进度的蓝色圆弧*&#x2F;</span><br><span class="line">        drawArcRed(canvas, rectF);</span><br><span class="line">        &#x2F;**【第三步】绘制&quot;步数&quot;的红色数字*&#x2F;</span><br><span class="line">        drawTextStepString(canvas, centerX);</span><br><span class="line">        &#x2F;**【第四步】绘制当前进度的红色数字*&#x2F;</span><br><span class="line">        drawTextNumber(canvas, centerX);</span><br><span class="line">&#x2F;&#x2F;        canvas.restore();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 1.绘制总步数的灰色圆弧</span><br><span class="line">     *</span><br><span class="line">     * @param canvas 画笔</span><br><span class="line">     * @param rectF  参考的矩形</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private void drawArcGray(Canvas canvas, RectF rectF)&#123;</span><br><span class="line">        Paint paint&#x3D;new Paint();</span><br><span class="line">        paint.setColor(getResources().getColor(R.color.running));</span><br><span class="line">        &#x2F;** 结合处为圆弧*&#x2F;</span><br><span class="line">        paint.setStrokeJoin(Paint.Join.ROUND);</span><br><span class="line">        &#x2F;** 设置画笔的样式 Paint.Cap.Round ,Cap.SQUARE等分别为圆形、方形*&#x2F;</span><br><span class="line">        paint.setStrokeCap(Paint.Cap.ROUND);</span><br><span class="line">        &#x2F;** 设置画笔的填充样式 Paint.Style.FILL  :填充内部;Paint.Style.FILL_AND_STROKE  ：填充内部和描边;  Paint.Style.STROKE  ：仅描边*&#x2F;</span><br><span class="line">        paint.setStyle(Paint.Style.STROKE);</span><br><span class="line">        &#x2F;**抗锯齿功能*&#x2F;</span><br><span class="line">        paint.setAntiAlias(true);</span><br><span class="line">        &#x2F;**设置画笔宽度*&#x2F;</span><br><span class="line">        paint.setStrokeWidth(borderWidth);</span><br><span class="line">        &#x2F;**绘制圆弧的方法</span><br><span class="line">         * drawArc(RectF oval, float startAngle, float sweepAngle, boolean useCenter, Paint paint)&#x2F;&#x2F;画弧，</span><br><span class="line">         参数一是RectF对象，一个矩形区域椭圆形的界限用于定义在形状、大小、电弧，</span><br><span class="line">         参数二是起始角(度)在电弧的开始，圆弧起始角度，单位为度。</span><br><span class="line">         参数三圆弧扫过的角度，顺时针方向，单位为度,从右中间开始为零度。</span><br><span class="line">         参数四是如果这是true(真)的话,在绘制圆弧时将圆心包括在内，通常用来绘制扇形；如果它是false(假)这将是一个弧线,</span><br><span class="line">         参数五是Paint对象；</span><br><span class="line">         *&#x2F;</span><br><span class="line">        canvas.drawArc(rectF,startAngle,angleLength,false,paint);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 2.绘制当前步数的绿色圆弧</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private void drawArcRed(Canvas canvas, RectF rectF)&#123;</span><br><span class="line">        Paint paintCurrent &#x3D; new Paint();</span><br><span class="line">        paintCurrent.setStrokeJoin(Paint.Join.ROUND);</span><br><span class="line">        paintCurrent.setStrokeCap(Paint.Cap.ROUND);&#x2F;&#x2F;圆角弧度</span><br><span class="line">        paintCurrent.setStyle(Paint.Style.STROKE);&#x2F;&#x2F;设置填充样式</span><br><span class="line">        paintCurrent.setAntiAlias(true);&#x2F;&#x2F;抗锯齿功能</span><br><span class="line">        paintCurrent.setStrokeWidth(borderWidth);&#x2F;&#x2F;设置画笔宽度</span><br><span class="line">        paintCurrent.setColor(getResources().getColor(R.color.running_green));&#x2F;&#x2F;设置画笔颜色</span><br><span class="line">        canvas.drawArc(rectF, startAngle, currentAngleLength, false, paintCurrent);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 3.圆环中心的步数</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private void  drawTextNumber(Canvas canvas, float centerX)&#123;</span><br><span class="line">        Paint vTextPaint&#x3D;new Paint();</span><br><span class="line">        vTextPaint.setTextAlign(Paint.Align.CENTER);</span><br><span class="line">        vTextPaint.setAntiAlias(true);&#x2F;&#x2F;抗锯齿功能</span><br><span class="line">        vTextPaint.setTextSize(dipToPx(15));</span><br><span class="line">        vTextPaint.setColor(getResources().getColor(R.color.little_gray));</span><br><span class="line">        Typeface font&#x3D; Typeface.create(Typeface.SANS_SERIF, Typeface.NORMAL);</span><br><span class="line">        vTextPaint.setTypeface(font);&#x2F;&#x2F;字体风格</span><br><span class="line">        Rect bounds_Number&#x3D;new Rect();</span><br><span class="line">        vTextPaint.getTextBounds(stepNumber,0,stepNumber.length(),bounds_Number);</span><br><span class="line">        canvas.drawText(stepNumber,centerX-bounds_Number.left,getHeight() &#x2F; 2 + bounds_Number.height()&#x2F;2-bounds_Number.top, vTextPaint);</span><br><span class="line">    &#125;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 4.圆环中心[步数]的文字</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private void drawTextStepString(Canvas canvas, float centerX) &#123;</span><br><span class="line">        Paint vTextPaint &#x3D; new Paint();</span><br><span class="line">        vTextPaint.setTextSize(dipToPx(15));</span><br><span class="line">        vTextPaint.setTextAlign(Paint.Align.CENTER);</span><br><span class="line">        vTextPaint.setAntiAlias(true);&#x2F;&#x2F;抗锯齿功能</span><br><span class="line">        vTextPaint.setColor(getResources().getColor(R.color.little_gray));</span><br><span class="line">        String stepString &#x3D; &quot;步数&quot;;</span><br><span class="line">        Rect bounds &#x3D; new Rect();</span><br><span class="line">        vTextPaint.getTextBounds(stepString, 0, stepString.length(), bounds);</span><br><span class="line">        canvas.drawText(stepString, centerX-bounds.left, getHeight() &#x2F; 2 - bounds.height()-bounds.top, vTextPaint);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取当前步数的数字的高度</span><br><span class="line">     * @param fontSize 字体大小</span><br><span class="line">     * @return 字体高度</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public int getFontHeight(float fontSize) &#123;</span><br><span class="line">        Paint paint &#x3D; new Paint();</span><br><span class="line">        paint.setTextSize(fontSize);</span><br><span class="line">        Rect bounds_Number &#x3D; new Rect();</span><br><span class="line">        paint.getTextBounds(stepNumber, 0, stepNumber.length(), bounds_Number);</span><br><span class="line">        return bounds_Number.height();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * dip 转换成px</span><br><span class="line">     * @param dip</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line"></span><br><span class="line">    private int dipToPx(float dip) &#123;</span><br><span class="line">        float density &#x3D; getContext().getResources().getDisplayMetrics().density;</span><br><span class="line">        return (int) (dip * density + 0.5f * (dip &gt;&#x3D; 0 ? 1 : -1));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 所走的步数进度</span><br><span class="line">     *</span><br><span class="line">     * @param totalStepNum  设置的步数</span><br><span class="line">     * @param currentCounts 所走步数</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void setCurrentCount(int startAngleNum,int totalStepNum, int currentCounts) &#123;</span><br><span class="line">        stepNumber &#x3D; currentCounts + &quot;&quot;;</span><br><span class="line">        setTextSize(currentCounts);</span><br><span class="line">        &#x2F;**如果当前走的步数超过总步数则还是圆*&#x2F;</span><br><span class="line">        if (currentCounts &gt; totalStepNum) &#123;</span><br><span class="line">            currentCounts &#x3D; totalStepNum;</span><br><span class="line">        &#125;</span><br><span class="line">        &#x2F;**所走步数占用总共步数的百分比*&#x2F;</span><br><span class="line">        float scale &#x3D; (float) currentCounts &#x2F; totalStepNum;</span><br><span class="line">        &#x2F;**开始所走的步数占总步速的百分比*&#x2F;</span><br><span class="line">        float start&#x3D;(float)startAngleNum&#x2F;totalStepNum;</span><br><span class="line">        float startAngleLength&#x3D;start*angleLength;</span><br><span class="line">        &#x2F;**换算成弧度最后要到达的角度的长度--&gt;弧长*&#x2F;</span><br><span class="line">        float currentAngleLength &#x3D; scale * angleLength;</span><br><span class="line">        &#x2F;**开始执行动画*&#x2F;</span><br><span class="line">        setAnimation(startAngleLength, currentAngleLength, animationLength);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 为进度设置动画</span><br><span class="line">     * ValueAnimator是整个属性动画机制当中最核心的一个类，属性动画的运行机制是通过不断地对值进行操作来实现的，</span><br><span class="line">     * 而初始值和结束值之间的动画过渡就是由ValueAnimator这个类来负责计算的。</span><br><span class="line">     * 它的内部使用一种时间循环的机制来计算值与值之间的动画过渡，</span><br><span class="line">     * 我们只需要将初始值和结束值提供给ValueAnimator，并且告诉它动画所需运行的时长，</span><br><span class="line">     * 那么ValueAnimator就会自动帮我们完成从初始值平滑地过渡到结束值这样的效果。</span><br><span class="line">     *</span><br><span class="line">     * @param last</span><br><span class="line">     * @param current</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private void setAnimation(float last, float current, int length) &#123;</span><br><span class="line">        ValueAnimator progressAnimator &#x3D; ValueAnimator.ofFloat(last,current);</span><br><span class="line">        progressAnimator.setDuration(length);</span><br><span class="line">        progressAnimator.setTarget(currentAngleLength);</span><br><span class="line">        progressAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public void onAnimationUpdate(ValueAnimator animation) &#123;</span><br><span class="line">                currentAngleLength &#x3D; (float) animation.getAnimatedValue();</span><br><span class="line">                invalidate();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        progressAnimator.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 设置文本大小,防止步数特别大之后放不下，将字体大小动态设置</span><br><span class="line">     * @param num</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public void setTextSize(int num) &#123;</span><br><span class="line">        String s &#x3D; String.valueOf(num);</span><br><span class="line">        int length &#x3D; s.length();</span><br><span class="line">        if (length &lt;&#x3D; 4) &#123;</span><br><span class="line">            numberTextSize &#x3D; dipToPx(15);</span><br><span class="line">        &#125; else if (length &gt; 4 &amp;&amp; length &lt;&#x3D; 6) &#123;</span><br><span class="line">            numberTextSize &#x3D; dipToPx(12);</span><br><span class="line">        &#125; else if (length &gt; 6 &amp;&amp; length &lt;&#x3D; 8) &#123;</span><br><span class="line">            numberTextSize &#x3D; dipToPx(10);</span><br><span class="line">        &#125; else if (length &gt; 8) &#123;</span><br><span class="line">            numberTextSize &#x3D; dipToPx(5);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>颜色什么的各位自行配色吧，喜欢配啥配啥</p>
+<p>二。用法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">RunningView runingView;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 所走的步数进度</span><br><span class="line">     *</span><br><span class="line">     * @param startAngleNum开始的步数</span><br><span class="line">     * @param totalStepNum   最大的步数</span><br><span class="line">     * @param currentCounts  当前的步数</span><br><span class="line">     *&#x2F;</span><br><span class="line">runningView.setCurrentCount(0, 10000, 1781);</span><br></pre></td></tr></table></figure>
+<p>好的，自定义 view 第一弹到此结束，第二弹左下体重 View 敬请期待</p>
+
+      <div class="tags">
+          <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89View/" rel="tag"><i class="ic i-tag"></i> 自定义View</a>
+      </div>
+  </div>
+
+   <footer>
+
+    <div class="meta">
+  <span class="item">
+    <span class="icon">
+      <i class="ic i-calendar-check"></i>
+    </span>
+    <span class="text">更新于</span>
+    <time title="修改时间：2021-03-15 17:09:44" itemprop="dateModified" datetime="2021-03-15T17:09:44+08:00">2021-03-15</time>
+  </span>
+</div>
+
+      
+<div class="reward">
+  <button><i class="ic i-heartbeat"></i> 赞赏</button>
+  <p>请我喝[茶]~(￣▽￣)~*</p>
+  <div id="qr">
+      
+      <div>
+        <img data-src="/images/wechatpay.png" alt="小翘 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/alipay.png" alt="小翘 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div>
+        <img data-src="/images/paypal.png" alt="小翘 贝宝">
+        <p>贝宝</p>
+      </div>
+  </div>
+</div>
+
+      
+
+<div id="copyright">
+<ul>
+  <li class="author">
+    <strong>本文作者： </strong>小翘-上海 <i class="ic i-at"><em>@</em></i>小翘
+  </li>
+  <li class="link">
+    <strong>本文链接：</strong>
+    <a href="http://example.com/2021/03/09/android/hello-world/" title="Android自定义view第一弹（防小米计步）">http://example.com/2021/03/09/android/hello-world/</a>
+  </li>
+  <li class="license">
+    <strong>版权声明： </strong>本站所有文章除特别声明外，均采用 <span class="exturl" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LW5jLXNhLzQuMC9kZWVkLnpo"><i class="ic i-creative-commons"><em>(CC)</em></i>BY-NC-SA</span> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+  </footer>
+
+</article>
+
+  </div>
+  
+
+<div class="post-nav">
+    <div class="item left">
+      
+
+  <a href="/2021/03/01/android/newpapername/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva3.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeuibk9fj20zk0m8ay2.jpg" title="7分钟搭建个人Hexo博客">
+  <span class="type">上一篇</span>
+  <span class="category"><i class="ic i-flag"></i> </span>
+  <h3>7分钟搭建个人Hexo博客</h3>
+  </a>
+
+    </div>
+    <div class="item right">
+    </div>
+</div>
+
+  
+  <div class="wrap" id="comments"></div>
+
+
+        </div>
+        <div id="sidebar">
+          
+
+<div class="inner">
+
+  <div class="panels">
+    <div class="inner">
+      <div class="contents panel pjax" data-title="文章目录">
+      </div>
+      <div class="related panel pjax" data-title="系列文章">
+        <ul>
+          <li class="active"><a href="/2021/03/09/android/hello-world/" rel="bookmark" title="Android自定义view第一弹（防小米计步）">Android自定义view第一弹（防小米计步）</a></li>
+        </ul>
+      </div>
+      <div class="overview panel" data-title="站点概览">
+        <div class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="image" itemprop="image" alt="小翘"
+      data-src="/images/avatar.jpg">
+  <p class="name" itemprop="name">小翘</p>
+  <div class="description" itemprop="description">记录生活，记录成长</div>
+</div>
+
+<nav class="state">
+    <div class="item posts">
+      <a href="/archives/">
+        <span class="count">2</span>
+        <span class="name">文章</span>
+      </a>
+    </div>
+    <div class="item categories">
+      <a href="/categories/">
+        <span class="count">1</span>
+        <span class="name">分类</span>
+      </a>
+    </div>
+    <div class="item tags">
+      <a href="/tags/">
+        <span class="count">1</span>
+        <span class="name">标签</span>
+      </a>
+    </div>
+</nav>
+
+<div class="social">
+      <span class="exturl item github" data-url="aHR0cHM6Ly9naXRodWIuY29tL01yUmlnaHREb25nWXVKaWUxMzE0" title="https:&#x2F;&#x2F;github.com&#x2F;MrRightDongYuJie1314"><i class="ic i-github"></i></span>
+      <span class="exturl item csdn" data-url="aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzMyODY1ODg3P3R5cGU9YmxvZw==" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_32865887?type&#x3D;blog"><i class="ic i-csdn"></i></span>
+      <span class="exturl item zhihu" data-url="aHR0cHM6Ly93d3cuemhpaHUuY29tL3Blb3BsZS95b3VybmFtZQ==" title="https:&#x2F;&#x2F;www.zhihu.com&#x2F;people&#x2F;yourname"><i class="ic i-zhihu"></i></span>
+      <span class="exturl item music" data-url="aHR0cHM6Ly9tdXNpYy4xNjMuY29tLyMvdXNlci9ob21lP2lkPXlvdXJpZA==" title="https:&#x2F;&#x2F;music.163.com&#x2F;#&#x2F;user&#x2F;home?id&#x3D;yourid"><i class="ic i-cloud-music"></i></span>
+      <span class="exturl item weibo" data-url="aHR0cHM6Ly93ZWliby5jb20veW91cm5hbWU=" title="https:&#x2F;&#x2F;weibo.com&#x2F;yourname"><i class="ic i-weibo"></i></span>
+      <span class="exturl item about" data-url="aHR0cHM6Ly9hYm91dC5tZS95b3VybmFtZQ==" title="https:&#x2F;&#x2F;about.me&#x2F;yourname"><i class="ic i-address-card"></i></span>
+</div>
+
+<ul class="menu">
+  
+    
+  <li class="item">
+    <a href="/" rel="section"><i class="ic i-home"></i>首页</a>
+  </li>
+
+
+</ul>
+
+      </div>
+    </div>
+  </div>
+
+  <ul id="quick">
+    <li class="prev pjax">
+    </li>
+    <li class="up"><i class="ic i-arrow-up"></i></li>
+    <li class="down"><i class="ic i-arrow-down"></i></li>
+    <li class="next pjax">
+    </li>
+    <li class="percent"></li>
+  </ul>
+</div>
+
+
+        </div>
+        <div class="dimmer"></div>
+      </div>
+    </main>
+    <footer id="footer">
+      <div class="inner">
+        <div class="widgets">
+          
+<div class="rpost pjax">
+  <h2>随机文章</h2>
+  <ul>
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+</div>
+
+    <span><a href="/2021/03/01/android/newpapername/" title="7分钟搭建个人Hexo博客">7分钟搭建个人Hexo博客</a></span>
+  </li>
+
+      
+  <li class="item">
+    
+<div class="breadcrumb">
+<a href="/categories/android/" title="分类于 android">android</a>
+</div>
+
+    <span><a href="/2021/03/09/android/hello-world/" title="Android自定义view第一弹（防小米计步）">Android自定义view第一弹（防小米计步）</a></span>
+  </li>
+
+  </ul>
+</div>
+<div>
+  <h2>最新评论</h2>
+  <ul class="leancloud-recent-comment"></ul>
+</div>
+
+        </div>
+        <div class="status">
+  <div class="copyright">
+    
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2021</span>
+    <span class="with-love">
+      <i class="ic i-sakura rotate"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">小翘 @ Handsome Man</span>
+  </div>
+  <div class="powered-by">
+    基于 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
+  </div>
+</div>
+
+      </div>
+    </footer>
+  </div>
+<script data-config type="text/javascript">
+  var LOCAL = {
+    path: '2021/03/09/android/hello-world/',
+    favicon: {
+      show: "（●´3｀●）やれやれだぜ",
+      hide: "(´Д｀)大変だ！"
+    },
+    search : {
+      placeholder: "文章搜索",
+      empty: "关于 「 ${query} 」，什么也没搜到",
+      stats: "${time} ms 内找到 ${hits} 条结果"
+    },
+    valine: true,fancybox: true,copyright: '复制成功，转载请遵守 <i class="ic i-creative-commons"></i>BY-NC-SA 协议。',
+    ignores : [
+      function(uri) {
+        return uri.includes('#');
+      },
+      function(uri) {
+        return new RegExp(LOCAL.path+"$").test(uri);
+      }
+    ]
+  };
+</script>
+
+<script src="https://cdn.polyfill.io/v2/polyfill.js"></script>
+
+<script src="//cdn.jsdelivr.net/combine/npm/pace-js@1.0.2/pace.min.js,npm/pjax@0.2.8/pjax.min.js,npm/whatwg-fetch@3.4.0/dist/fetch.umd.min.js,npm/animejs@3.2.0/lib/anime.min.js,npm/algoliasearch@4/dist/algoliasearch-lite.umd.js,npm/instantsearch.js@4/dist/instantsearch.production.min.js,npm/lozad@1/dist/lozad.min.js,npm/quicklink@2/dist/quicklink.umd.js"></script>
+
+<script src="/js/app.js?v=0.2.5"></script>
+
+
+
+
+</body>
+</html>
